@@ -1,0 +1,27 @@
+{
+    "apps": [
+        {
+            "name": "website",
+            "script": "index.js",
+            "env": {
+                "COMMON_VARIABLE": "true"
+            },
+            "env_production": "production"
+        }
+    ],
+    "deploy": {
+        "production": {
+            "user": "root",
+            "host": ["39.99.217.52"],
+            "port": "5200",
+            "ref": "origin/master",
+            "repo": "git@github.com:WangQianni/One-click-deployment-channe.git",
+            "path": "/www/website",
+            "post-deploy": "yarn && pm2 startOrRestart ecosystem.json --env production",
+            "ssh_options": "StrictHostKeyChecking=no",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    }
+}
